@@ -1,3 +1,0 @@
-# file to filter the found contexts based on the verbs semantics
-
-...

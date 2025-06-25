@@ -1,6 +1,17 @@
 This repository contains code and data for a research project on motion verbs in Ukrainian. 
 
+## Repository contents
+
+Code:
+- `parse_data.py` -- used to parse the original web corpus and extract sentences that contain motion verbs
+- `extract_dependencies.py` -- used to analyze the found sentences, find verb dependencies (preposition, subject, complement) and filter out unnecessary instances.
+- TBA: training and inference of the model.
+
+Data:
+- ...
+
 ## Task
+
 Our aim was to find and analyze contexts in Ukrainian containing prefixed motion verbs, specifically how the prefixes cooccur with prepositions. There are thus 4 main elements to our analysis:
 - Prefix (e.g. _від_-, _при_-)
 - Motion verb stem (e.g. _входити_, _виїхати_)

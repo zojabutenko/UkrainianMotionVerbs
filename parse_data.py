@@ -39,7 +39,6 @@ def find_verbs(line, verbs, lemmatized=False):
     else:
         tokens = line.split(' ')
         lemmatized_tokens = [pymorphy2.MorphAnalyzer(lang='uk').parse(token)[0].normal_form for token in tokens]
-        # print(lemmatized_tokens)
         for id, token in enumerate(lemmatized_tokens):
             if token in verbs:
                 return id, token, line
@@ -106,9 +105,7 @@ def main():
                 except IndexError:
                     print(f'IndexError: {id} for line: {lemmatized_line}, {tokenized_line}')
                     continue
-                
-                # print(f'Found verb in lemmatized line: {found_context[0]} - {found_context[1]}')
-                
+                                
                 contexts.append((tokenized_line, lemmatized_line, id, lemmatized_token, token))
 
     elif domain == 'web':
@@ -120,24 +117,15 @@ def main():
 
         with open(output_file, 'a') as f:
             for id, sentence in tqdm(sentences):
-                # print(id, sentence)
-
                 found_context = find_verbs(sentence, verbs, lemmatized=False)
                 if found_context:
                     id, lem_token, line = found_context
                     token = sentence.split(' ')[id]
                     
-                    # contexts.append((sentence, id, token))
                     context = (sentence, id, token, lem_token)
                     context = [str(item) for item in context]
                     f.write('\t'.join(context) + '\n')
             
-
-
-    # with open(output_file, 'a') as f:
-    #     for context in contexts:
-    #         context = [str(item) for item in context]
-    #         f.write('\t'.join(context) + '\n')
 
 
 if __name__ == '__main__':
