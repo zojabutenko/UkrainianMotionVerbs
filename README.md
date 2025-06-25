@@ -27,6 +27,18 @@ We provide the full dataset (`full_dataset.csv`), however most of the analysis i
 
 Motion verbs are often used in metaphorical contexts, which is something we would like to control for. Firstly, we subsample the `data/top1000_dataset.csv` file with seed=42 to include a 1000 random instances. They are then manually classified as literal or metaphorical, which is the gold standard for our classification and can be found in `data/Gold_standard.csv`.
 
+We have found that the data is quite unbalanced, with the majority of contexts being metaphorical.
+
+### 🔢 Class Distribution
+
+| Motion Type   | Count |
+|---------------|-------|
+| Metaphorical  | 754   |
+| Literal       | 246   |
+| **Total**     | 1000  |
+
+![Class distribution](images/type_distribution.png)
+
 The Gold standard was split into train, validation, and test subsets with the following ratio:
 
 ### 📂 Dataset Split Summary
@@ -69,8 +81,15 @@ Additionally, a special token was added to the tokenizer: [TARGET]. This is due 
 | 2     | 0.0239        | 0.6675           | 92.59%    | 0.9550    | 0.9381    | 0.9725   |
 | 3     | 0.0221        | 0.6252           | 93.33%    | 0.9577    | 0.9808    | 0.9358   |
 
+Below are two confusion matrices for the predictions on the test set. Since our data is quite unbalanced (majority metaphorical), the matrix with absolute values (on the left) might appear disproportionate. However, the normalized confusion matrix (on the right) demonstrates good performance of the model for both classes/
+
+<div style="display: flex; justify-content: space-between;">
+  <img src="images/confusion_matrix.png" alt="Confusion matrix" style="width: 45%;"/>
+  <img src="images/confusion_matrix_normalized.png" alt="Confusion matrix normalized" style="width: 45%;"/>
+</div>
 
 
 The trained model was then used to label the rest of the contexts.
 
 The final annotated dataset (`data/combined_with_predictions.csv`) contains and additional column (Gold_standard) which provides the source of the classification: either manual annotation ('gold') or model's prediction ('model').
+
