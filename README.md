@@ -20,12 +20,12 @@ On the second iteration, the Stanza dependency parser was used to extract the pr
 
 Finally, the prefixes and stems were defined in a separate file (`verb_prefix_map.json`), which was used to annotate each instance.
 
-We provide the full dataset, however most of the analysis is done on a different file -- `top1000_dataset.csv`. In order to filter out noise, we have compiled a list of complement frequencies (`object_lemma_counts.csv`), and selected the 1000 most frequent nouns. The dataset was then cut down to only contexts where the compelement appears in this list.
+We provide the full dataset (`full_dataset.csv`), however most of the analysis is done on a different file -- `top1000_dataset.csv`. In order to filter out noise, we have compiled a list of complement frequencies (`object_lemma_counts.csv`), and selected the 1000 most frequent nouns. The dataset was then cut down to only contexts where the compelement appears in this list.
 
 
 ## Metaphorical uses
 
-Motion verbs are often used in metaphorical contexts, which is something we would like to control for. Firstly, we subsample the `top1000_dataset.csv` file with seed=42 to include a 1000 random instances. They are then manually classified as literal or metaphorical, which is the gold standard for our classification and can be found in `extended_manual_subset.csv`.
+Motion verbs are often used in metaphorical contexts, which is something we would like to control for. Firstly, we subsample the `data/top1000_dataset.csv` file with seed=42 to include a 1000 random instances. They are then manually classified as literal or metaphorical, which is the gold standard for our classification and can be found in `data/Gold_standard.csv`.
 
 The Gold standard was split into train, validation, and test subsets with the following ratio:
 
@@ -70,6 +70,7 @@ Additionally, a special token was added to the tokenizer: [TARGET]. This is due 
 | 3     | 0.0221        | 0.6252           | 93.33%    | 0.9577    | 0.9808    | 0.9358   |
 
 
+
 The trained model was then used to label the rest of the contexts.
 
-
+The final annotated dataset (`data/combined_with_predictions.csv`) contains and additional column (Gold_standard) which provides the source of the classification: either manual annotation ('gold') or model's prediction ('model').
