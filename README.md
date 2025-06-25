@@ -104,3 +104,8 @@ The trained model was then used to label the rest of the contexts.
 
 The final annotated dataset (`data/combined_with_predictions.csv`) contains and additional column (Gold_standard) which provides the source of the classification: either manual annotation ('gold') or model's prediction ('model').
 
+For the sake of convenience, we also provide the literal and metaphorical contexts separately: `data/literal.csv` and `data/metaphorical.csv`, with 3706 and 9619 instances respectively. 
+
+The distribution of the final dataset is close to the manually annotated one:
+
+![Class distribution with predictions](images/type_dist_with_pred.png)
